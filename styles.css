@@ -1,0 +1,175 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: #e2e1dc;
+  color: white;
+  position: relative;
+  font-family: inter;
+}
+.notifications {
+  position: absolute;
+  right: 10px;
+  top: 30px;
+  overflow: hidden;
+}
+.notification {
+  width: 275px;
+  padding: 20px;
+  height: 60px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  white-space: nowrap;
+  background-color: #373c4f;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 16px;
+z-index: 80;
+}
+.notification.popup {
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  animation-name:notification-in;
+}
+@keyframes notification-in {
+  from{width: 0px;}
+  to{width: 250px;}
+}
+.notification.popout {
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  animation-name:notification-out;
+
+}
+@keyframes notification-out {
+  from{width: 250px;}
+  to{width: 0px;}
+}
+
+.container {
+  background-color: #373c4f;
+  padding: 20px;
+  width: 440px;
+  position: relative;
+  overflow-y: auto;
+}
+.task-list .task-card {
+  width: 400px;
+}
+.task-list .task-card.completed {
+  text-decoration: line-through;
+}
+.task-list .task-card .task-card-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+.task-list .task-card .task-card-bottom p {
+  margin-bottom: 20px;
+}
+.task-card .task-buttons {
+  width: 140px !important;
+  margin-left: auto;
+}
+.add-task-btn {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1ren;
+  border: 2px solid #878895;
+  opacity: 0.5;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+}
+.add-task-btn button {
+  font-size: 24px;
+  background: transparent;
+  border: none;
+  color: #878895;
+}
+.task-add-window {
+  width: 400px;
+  padding: 20px;
+  color: #373c4f;
+  position: absolute;
+  background-color: #e2e1dc;
+  bottom: 30px;
+  height: 0;
+}
+.task-add-window.hidden {
+  display: none;
+}
+.task-add-window.active {
+  height: 250px;
+  animation-name: task-add-window-active;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  overflow: hidden;
+  z-index: 100;
+}
+
+@keyframes task-add-window-active {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 250px;
+  }
+}
+.task-add-window .task-add-window-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.task-add-window input {
+  display: block;
+  width: 100%;
+  margin-top: 40px;
+  border: transparent;
+  background-color: #e2e1dc;
+  font-size: 1rem;
+  color: #373c4f;
+  border-bottom: 1px solid #c9c7c7;
+}
+input:focus {
+  outline: none;
+  border-bottom: 1px solid #b38add;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); 
+  z-index: 90; 
+  display: none; 
+  pointer-events: none; /
+}
+.overlay.active {
+  display: block;
+  pointer-events: auto;
+}
+.task-add-window button {
+  display: block;
+  margin: auto;
+  margin-top: 40px;
+}
+.task-add-window button.hidden {
+  display: none;
+}

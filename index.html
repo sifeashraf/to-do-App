@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="overlay" id="overlay"></div>
+    <div class="notifications"></div>
+    <div class="container">
+      <div class="task-manger">
+        <h1>Task Manger</h1>
+        <div class="task-list">
+          <p>Empty Add Task</p>
+        </div>
+      </div>
+      <div class="add-task-btn">
+        <button id="add-task-btn">+</button>
+      </div>
+      <div class="task-add-window hidden">
+        <div class="task-add-window-header">
+          <h3>Add Task</h3>
+          <i>X</i>
+        </div>
+        <input type="text" placeholder="Task Name" />
+        <input type="text" placeholder="Task Description" />
+        <button class="task-add-window-btn">Add Task</button>
+        <button class="task-add-window-btn hidden">Confirm Task</button>
+      </div>
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>
