@@ -64,7 +64,10 @@ z-index: 80;
 .task-list .task-card {
   width: 400px;
 }
-.task-list .task-card.completed {
+.task-list .task-card.completed h4 {
+  text-decoration: line-through;
+}
+.task-list .task-card.completed .task-card-bottom p {
   text-decoration: line-through;
 }
 .task-list .task-card .task-card-header {
@@ -100,6 +103,8 @@ z-index: 80;
   background: transparent;
   border: none;
   color: #878895;
+  cursor: pointer;
+
 }
 .task-add-window {
   width: 400px;
@@ -135,6 +140,10 @@ z-index: 80;
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+}
+.task-add-window .task-add-window-header i {
+  padding: 10px 15px;
+  cursor: pointer;
 }
 .task-add-window input {
   display: block;

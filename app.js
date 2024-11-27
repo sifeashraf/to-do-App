@@ -1,4 +1,4 @@
-let addTaskButton = document.querySelector("#add-task-btn");
+let addTaskButton = document.querySelector(".add-task-btn");
 let taskAddWindow = document.getElementsByClassName("task-add-window")[0];
 let taskAddWindowInputs = document.querySelectorAll(".task-add-window input");
 let taskAddWindowBtn = document.querySelectorAll(".task-add-window button");
