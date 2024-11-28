@@ -17,6 +17,7 @@ body {
   right: 10px;
   top: 30px;
   overflow: hidden;
+  z-index: 99;
 }
 .notification {
   width: 275px;
@@ -26,61 +27,106 @@ body {
   margin-bottom: 20px;
   white-space: nowrap;
   background-color: #373c4f;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 16px;
-z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  z-index: 80;
 }
 .notification.popup {
   animation-duration: 1s;
   animation-iteration-count: 1;
   animation-timing-function: linear;
-  animation-name:notification-in;
+  animation-name: notification-in;
 }
 @keyframes notification-in {
-  from{width: 0px;}
-  to{width: 250px;}
+  from {
+    width: 0px;
+  }
+  to {
+    width: 250px;
+  }
 }
 .notification.popout {
   animation-duration: 1s;
   animation-iteration-count: 1;
   animation-timing-function: linear;
-  animation-name:notification-out;
-
+  animation-name: notification-out;
 }
 @keyframes notification-out {
-  from{width: 250px;}
-  to{width: 0px;}
+  from {
+    width: 250px;
+  }
+  to {
+    width: 0px;
+  }
 }
 
 .container {
   background-color: #373c4f;
-  padding: 20px;
   width: 440px;
   position: relative;
-  overflow-y: auto;
+  padding: 25px 0 0 0;
 }
-.task-list .task-card {
+.container .task-manger h1 {
+  padding-left: 10px;
+  margin-bottom: 30px;
+}
+.task-list,
+.completed-task-list {
+  padding-bottom: 20px;
+}
+.task-card {
   width: 400px;
+  border: 1px solid white;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  padding: 10px;
 }
-.task-list .task-card.completed h4 {
+.task-card.completed h4 {
   text-decoration: line-through;
 }
-.task-list .task-card.completed .task-card-bottom p {
+.task-card.completed .task-card-bottom p {
   text-decoration: line-through;
 }
-.task-list .task-card .task-card-header {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
+
+.task-card .task-card-header p {
+  text-align: right;
+  font-style: italic;
 }
-.task-list .task-card .task-card-bottom p {
-  margin-bottom: 20px;
+
+.task-card .task-card-bottom p {
+  margin-bottom: 10px;
 }
 .task-card .task-buttons {
   width: 140px !important;
   margin-left: auto;
+}
+.task-list-container,
+.completed-task-list-container {
+  background-color: #878895;
+  height: auto;
+}
+.task-list-container > p,
+.completed-task-list-container > p {
+  padding: 12px 0;
+  font-size: 19px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 20px;
+  i {
+    width: 30px;
+    height: 30px;
+  }
+}
+.task-list-container img,
+.completed-task-list-container img {
+  width: 30px;
+  height: 30px;
+}
+.task-list.hidden,
+.completed-task-list.hidden {
+  display: none;
 }
 .add-task-btn {
   position: absolute;
@@ -104,7 +150,6 @@ z-index: 80;
   border: none;
   color: #878895;
   cursor: pointer;
-
 }
 .task-add-window {
   width: 400px;
@@ -115,11 +160,51 @@ z-index: 80;
   bottom: 30px;
   height: 0;
 }
+@media screen and (min-width: 750px) {
+  .task-add-window {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    padding-top: 50px;
+    height: 100vh !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  .task-add-window button {
+    display: block;
+    margin: 0;
+    margin-top: 40px;
+  }
+}
 .task-add-window.hidden {
   display: none;
 }
+@media screen and (max-width: 749px) {
+  .task-card .task-card-header {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .task-card {
+    width: calc(100% - 10px);
+  }
+
+  .task-add-window.active {
+    height: 250px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+@media screen and (max-width: 450px) {
+  .container {
+    width: 100%;
+  }
+  .task-add-window {
+    width: 95%;
+  }
+}
 .task-add-window.active {
-  height: 250px;
   animation-name: task-add-window-active;
   animation-duration: 0.5s;
   animation-iteration-count: 1;
@@ -139,7 +224,12 @@ z-index: 80;
 .task-add-window .task-add-window-header {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
   margin-bottom: 20px;
+}
+.task-add-window .inputs {
+  width: 100%;
 }
 .task-add-window .task-add-window-header i {
   padding: 10px 15px;
@@ -164,11 +254,11 @@ input:focus {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5); 
-  z-index: 90; 
-  display: none; 
-  pointer-events: none; /
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 90;
+  display: none;
+  pointer-events: none;
 }
 .overlay.active {
   display: block;
@@ -176,7 +266,6 @@ input:focus {
 }
 .task-add-window button {
   display: block;
-  margin: auto;
   margin-top: 40px;
 }
 .task-add-window button.hidden {

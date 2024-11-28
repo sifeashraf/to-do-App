@@ -12,8 +12,28 @@
     <div class="container">
       <div class="task-manger">
         <h1>Task Manger</h1>
-        <div class="task-list">
-          <p>Empty Add Task</p>
+        <div class="task-list-container">
+          <p>
+            tasks queue
+            <i
+              ><img
+                src="./icon/down-arrow-5-svgrepo-com.svg"
+                alt="direction arrow"
+            /></i>
+          </p>
+
+          <div class="task-list hidden"></div>
+        </div>
+        <div class="completed-task-list-container">
+          <p>
+            completed tasks queue
+            <i
+              ><img
+                src="./icon/down-arrow-5-svgrepo-com.svg"
+                alt="direction arrow"
+            /></i>
+          </p>
+          <div class="completed-task-list hidden"></div>
         </div>
       </div>
       <div class="add-task-btn">
@@ -24,8 +44,10 @@
           <h3>Add Task</h3>
           <i>X</i>
         </div>
-        <input type="text" placeholder="Task Name" />
-        <input type="text" placeholder="Task Description" />
+        <div class="inputs">
+          <input type="text" placeholder="Task Name" />
+          <input type="text" placeholder="Task Description" />
+        </div>
         <button class="task-add-window-btn">Add Task</button>
         <button class="task-add-window-btn hidden">Confirm Task</button>
       </div>
